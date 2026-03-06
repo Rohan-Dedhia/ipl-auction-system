@@ -161,6 +161,8 @@ color:white;
 
 /* NAVBAR */
 
+/* NAVBAR */
+
 .navbar{
 display:flex;
 justify-content:space-between;
@@ -168,14 +170,39 @@ align-items:center;
 padding:20px 40px;
 background:rgba(0,0,0,0.4);
 backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.nav-controls{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.filter-form select{
+padding:8px 12px;
+border-radius:6px;
+border:none;
+font-size:14px;
 }
 
 .logout-btn{
 background:#ff4b5c;
-padding:8px 14px;
+padding:8px 16px;
 border-radius:6px;
 color:white;
 text-decoration:none;
+font-weight:500;
+transition:0.3s;
+}
+
+.logout-btn:hover{
+background:#ff1f3d;
 }
 
 /* TABLE */
