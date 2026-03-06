@@ -20,15 +20,19 @@
 
 <form method="GET" class="filter-form">
 
-<select name="role" onchange="this.form.submit()">
+<input type="text" name="search" placeholder="Search Player">
 
-<option value="">All Players</option>
+<select name="role">
+
+<option value="">All Roles</option>
 <option value="Batsman">Batsman</option>
 <option value="Bowler">Bowler</option>
 <option value="Allrounder">All-Rounder</option>
 <option value="Wicketkeeper">Wicketkeeper</option>
 
 </select>
+
+<button type="submit">Filter</button>
 
 </form>
 
@@ -53,6 +57,9 @@
 <tr>
 <th>Player</th>
 <th>Role</th>
+<th>Nationality</th>
+<th>Batting</th>
+<th>Bowling</th>
 <th>Base Price</th>
 <th>Current Bid</th>
 <th>Team</th>
@@ -63,10 +70,24 @@
 
 <tr>
 
-<td>{{player.name}}</td>
+<td>
+<a href="/player/{{player.id}}" class="player-link">
+{{player.name}}
+</a>
+</td>
+
 <td>{{player.role}}</td>
+
+<td>{{player.nationality}}</td>
+
+<td>{{player.batting_style}}</td>
+
+<td>{{player.bowling_style}}</td>
+
 <td>₹{{player.base_price}}</td>
-<td>₹{{player.current_bid}}</td>
+
+<td class="current-bid">₹{{player.current_bid}}</td>
+
 <td>{{player.team}}</td>
 
 <td>
