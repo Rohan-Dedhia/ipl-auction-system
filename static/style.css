@@ -1,42 +1,82 @@
 body{
-    font-family: Arial;
-    background-color:#f4f4f4;
-    text-align:center;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+margin:0;
+padding:40px;
 }
 
-h1{
-    margin-top:30px;
+.title{
+text-align:center;
+font-size:42px;
+margin-bottom:40px;
+font-weight:700;
 }
 
-table{
-    margin:auto;
-    border-collapse: collapse;
-    width:70%;
-    background:white;
+.auction-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+color:black;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-th,td{
-    padding:12px;
-    border:1px solid #ddd;
+.auction-table th{
+background:#1e3c72;
+color:white;
+padding:15px;
+font-size:18px;
 }
 
-th{
-    background:#333;
-    color:white;
+.auction-table td{
+padding:15px;
+text-align:center;
 }
 
-button{
-    padding:8px 15px;
-    background:#007bff;
-    border:none;
-    color:white;
-    cursor:pointer;
+.auction-table tr:nth-child(even){
+background:#f2f2f2;
 }
 
-button:hover{
-    background:#0056b3;
+.player{
+font-weight:600;
 }
 
-form{
-    margin-top:40px;
+.bid{
+color:#2e7d32;
+font-weight:bold;
+}
+
+.team{
+color:#c62828;
+font-weight:bold;
+}
+
+.bid-form{
+display:flex;
+gap:10px;
+justify-content:center;
+}
+
+.bid-form input{
+padding:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.bid-form button{
+background:#ff6f00;
+border:none;
+color:white;
+padding:8px 15px;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+.bid-form button:hover{
+background:#e65100;
+transform:scale(1.05);
 }

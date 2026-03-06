@@ -2,36 +2,47 @@
 <html>
 
 <head>
-<title>IPL Auction</title>
+<title>IPL Auction Dashboard</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<h1>IPL Auction System</h1>
+<h1 class="title">🏏 IPL Auction Dashboard</h1>
 
-<table>
+<table class="auction-table">
 
 <tr>
 <th>Player</th>
 <th>Base Price</th>
 <th>Current Bid</th>
 <th>Team</th>
-<th>Bid</th>
+<th>Place Bid</th>
 </tr>
 
 {% for player in players %}
 
 <tr>
-<td>{{player.name}}</td>
-<td>{{player.base_price}}</td>
-<td>{{player.current_bid}}</td>
-<td>{{player.team}}</td>
+
+<td class="player">{{player.name}}</td>
+<td>₹ {{player.base_price}}</td>
+<td class="bid">₹ {{player.current_bid}}</td>
+<td class="team">{{player.team}}</td>
 
 <td>
-<a href="/bid/{{player.id}}">
-<button>Place Bid</button>
-</a>
+
+<form method="POST" class="bid-form">
+
+<input type="hidden" name="player_id" value="{{player.id}}">
+
+<input type="text" name="team" placeholder="Team Name" required>
+
+<input type="number" name="bid" placeholder="Bid Amount" required>
+
+<button type="submit">Bid</button>
+
+</form>
+
 </td>
 
 </tr>

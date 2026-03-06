@@ -4,40 +4,41 @@ from models import Player, Base
 
 app = Flask(__name__)
 
-# create tables automatically
 Base.metadata.create_all(bind=engine)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
 
     db = SessionLocal()
-    players = db.query(Player).all()
-    db.close()
-
-    return render_template("index.html", players=players)
-
-
-@app.route("/bid/<int:id>", methods=["GET", "POST"])
-def bid(id):
-
-    db = SessionLocal()
-    player = db.query(Player).filter(Player.id == id).first()
 
     if request.method == "POST":
 
+        player_id = int(request.form["player_id"])
         team = request.form["team"]
-        bid = int(request.form["bid"])
+        bid_amount = int(request.form["bid"])
 
-        if bid > player.current_bid:
-            player.current_bid = bid
+        player = db.query(Player).filter(Player.id == player_id).first()
+
+        # Check if team already owns another player
+        team_exists = db.query(Player).filter(Player.team == team).first()
+
+        if team_exists:
+            db.close()
+            return "This team already owns a player!"
+
+        if player and bid_amount > player.current_bid:
+            player.current_bid = bid_amount
             player.team = team
             db.commit()
 
         db.close()
         return redirect("/")
 
-    return render_template("bid.html", player=player)
+    players = db.query(Player).all()
+    db.close()
+
+    return render_template("index.html", players=players)
 
 
 if __name__ == "__main__":
