@@ -20,22 +20,22 @@ def index():
 
         player = db.query(Player).filter(Player.id == player_id).first()
 
-        # Check if team already owns another player
-        team_exists = db.query(Player).filter(Player.team == team).first()
+        if player:
 
-        if team_exists:
-            db.close()
-            return "This team already owns a player!"
+            # prevent same team bidding consecutively
+            if player.team == team:
+                db.close()
+                return "Same team cannot bid twice consecutively!"
 
-        if player and bid_amount > player.current_bid:
-            player.current_bid = bid_amount
-            player.team = team
-            db.commit()
+            if bid_amount > player.current_bid:
+                player.current_bid = bid_amount
+                player.team = team
+                db.commit()
 
         db.close()
         return redirect("/")
 
-    players = db.query(Player).all()
+    players = db.query(Player).order_by(Player.id).all()
     db.close()
 
     return render_template("index.html", players=players)
