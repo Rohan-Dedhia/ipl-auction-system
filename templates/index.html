@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>IPL Auction Dashboard</title>
+<title>IPL Auction</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
@@ -10,14 +10,26 @@
 
 <h1 class="title">🏏 IPL Auction Dashboard</h1>
 
-<table class="auction-table">
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="alerts">
+{% for category, message in messages %}
+<div class="alert {{category}}">{{message}}</div>
+{% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="table-container">
+
+<table>
 
 <tr>
 <th>Player</th>
 <th>Base Price</th>
 <th>Current Bid</th>
 <th>Team</th>
-<th>Place Bid</th>
+<th>Bid</th>
 </tr>
 
 {% for player in players %}
@@ -25,17 +37,17 @@
 <tr>
 
 <td class="player">{{player.name}}</td>
-<td>₹ {{player.base_price}}</td>
-<td class="bid">₹ {{player.current_bid}}</td>
+<td>₹{{player.base_price}}</td>
+<td class="bid">₹{{player.current_bid}}</td>
 <td class="team">{{player.team}}</td>
 
 <td>
 
-<form method="POST" class="bid-form">
+<form method="POST">
 
 <input type="hidden" name="player_id" value="{{player.id}}">
 
-<input type="text" name="team" placeholder="Team Name" required>
+<input type="text" name="team" placeholder="Team" required>
 
 <input type="number" name="bid" placeholder="Bid Amount" required>
 
@@ -50,6 +62,8 @@
 {% endfor %}
 
 </table>
+
+</div>
 
 </body>
 </html>

@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from database import engine, SessionLocal
 from models import Player, Base
 
 app = Flask(__name__)
+app.secret_key = "auction_secret"
 
 Base.metadata.create_all(bind=engine)
 
@@ -22,15 +23,17 @@ def index():
 
         if player:
 
-            # prevent same team bidding consecutively
             if player.team == team:
-                db.close()
-                return "Same team cannot bid twice consecutively!"
+                flash("❌ Same team cannot bid consecutively!", "error")
 
-            if bid_amount > player.current_bid:
+            elif bid_amount <= player.current_bid:
+                flash("❌ Bid must be higher than current bid!", "error")
+
+            else:
                 player.current_bid = bid_amount
                 player.team = team
                 db.commit()
+                flash("✅ Bid placed successfully!", "success")
 
         db.close()
         return redirect("/")
