@@ -8,26 +8,30 @@
 
 <body>
 
-<h1 class="title">🏏 IPL Auction Dashboard</h1>
+<h1>🏏 IPL Auction Dashboard</h1>
+
+<div class="filters">
+<a href="/">All</a>
+<a href="/?role=Batsman">Batsmen</a>
+<a href="/?role=Bowler">Bowlers</a>
+<a href="/?role=Allrounder">All-Rounders</a>
+<a href="/?role=Wicketkeeper">Wicketkeepers</a>
+<a href="/logout">Logout</a>
+</div>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-<div class="alerts">
 {% for category, message in messages %}
 <div class="alert {{category}}">{{message}}</div>
 {% endfor %}
-</div>
-{% endif %}
 {% endwith %}
-
-<div class="table-container">
 
 <table>
 
 <tr>
 <th>Player</th>
-<th>Base Price</th>
-<th>Current Bid</th>
+<th>Role</th>
+<th>Base</th>
+<th>Current</th>
 <th>Team</th>
 <th>Bid</th>
 </tr>
@@ -36,10 +40,11 @@
 
 <tr>
 
-<td class="player">{{player.name}}</td>
-<td>₹{{player.base_price}}</td>
-<td class="bid">₹{{player.current_bid}}</td>
-<td class="team">{{player.team}}</td>
+<td>{{player.name}}</td>
+<td>{{player.role}}</td>
+<td>{{player.base_price}}</td>
+<td>{{player.current_bid}}</td>
+<td>{{player.team}}</td>
 
 <td>
 
@@ -49,9 +54,9 @@
 
 <input type="text" name="team" placeholder="Team" required>
 
-<input type="number" name="bid" placeholder="Bid Amount" required>
+<input type="number" name="bid" placeholder="Bid" required>
 
-<button type="submit">Bid</button>
+<button>Bid</button>
 
 </form>
 
@@ -62,8 +67,6 @@
 {% endfor %}
 
 </table>
-
-</div>
 
 </body>
 </html>
