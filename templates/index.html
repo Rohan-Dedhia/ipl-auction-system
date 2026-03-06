@@ -2,22 +2,40 @@
 <html>
 
 <head>
-<title>IPL Auction</title>
+
+<title>IPL Auction Dashboard</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-<h1>🏏 IPL Auction Dashboard</h1>
+<div class="navbar">
 
-<div class="filters">
-<a href="/">All</a>
-<a href="/?role=Batsman">Batsmen</a>
-<a href="/?role=Bowler">Bowlers</a>
-<a href="/?role=Allrounder">All-Rounders</a>
-<a href="/?role=Wicketkeeper">Wicketkeepers</a>
-<a href="/logout">Logout</a>
+<h2>🏏 IPL Auction Dashboard</h2>
+
+<div>
+
+<form method="GET" class="filter-form">
+
+<select name="role" onchange="this.form.submit()">
+
+<option value="">All Players</option>
+<option value="Batsman">Batsman</option>
+<option value="Bowler">Bowler</option>
+<option value="Allrounder">All-Rounder</option>
+<option value="Wicketkeeper">Wicketkeeper</option>
+
+</select>
+
+</form>
+
+<a href="/logout" class="logout-btn">Logout</a>
+
 </div>
+
+</div>
+
 
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% for category, message in messages %}
@@ -25,13 +43,16 @@
 {% endfor %}
 {% endwith %}
 
+
+<div class="table-container">
+
 <table>
 
 <tr>
 <th>Player</th>
 <th>Role</th>
-<th>Base</th>
-<th>Current</th>
+<th>Base Price</th>
+<th>Current Bid</th>
 <th>Team</th>
 <th>Bid</th>
 </tr>
@@ -42,8 +63,8 @@
 
 <td>{{player.name}}</td>
 <td>{{player.role}}</td>
-<td>{{player.base_price}}</td>
-<td>{{player.current_bid}}</td>
+<td>₹{{player.base_price}}</td>
+<td>₹{{player.current_bid}}</td>
 <td>{{player.team}}</td>
 
 <td>
@@ -54,9 +75,9 @@
 
 <input type="text" name="team" placeholder="Team" required>
 
-<input type="number" name="bid" placeholder="Bid" required>
+<input type="number" name="bid" placeholder="Bid Amount" required>
 
-<button>Bid</button>
+<button type="submit">Bid</button>
 
 </form>
 
@@ -67,6 +88,8 @@
 {% endfor %}
 
 </table>
+
+</div>
 
 </body>
 </html>
