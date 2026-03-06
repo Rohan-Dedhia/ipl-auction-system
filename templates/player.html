@@ -1,15 +1,43 @@
-<h2>{{player.name}}</h2>
+<!DOCTYPE html>
+<html>
 
-<p>Nationality: {{player.nationality}}</p>
+<head>
 
-<p>Role: {{player.role}}</p>
+<title>{{player.name}}</title>
 
-<p>Batting Style: {{player.batting_style}}</p>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-<p>Bowling Style: {{player.bowling_style}}</p>
+</head>
 
-<p>Runs: {{player.runs}}</p>
+<body>
 
-<p>Strike Rate: {{player.strike_rate}}</p>
+<div class="player-page">
 
-<p>Current Bid: {{player.current_bid}}</p>
+<div class="player-card">
+
+<h1>{{player.name}}</h1>
+
+<p><strong>Role:</strong> {{player.role}}</p>
+
+<p><strong>Nationality:</strong> {{player.nationality}}</p>
+
+<p><strong>Batting Style:</strong> {{player.batting_style}}</p>
+
+<p><strong>Bowling Style:</strong> {{player.bowling_style}}</p>
+
+<p><strong>Runs:</strong> {{player.runs}}</p>
+
+<p><strong>Strike Rate:</strong> {{player.strike_rate}}</p>
+
+<p><strong>Current Bid:</strong> ₹{{player.current_bid}}</p>
+
+<p><strong>Team:</strong> {{player.team}}</p>
+
+<a href="/" class="back-btn">⬅ Back to Auction</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
