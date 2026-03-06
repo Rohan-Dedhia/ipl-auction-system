@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Bid Player</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Bid for {{player.name}}</h1>
+
+<h3>Current Bid : ₹{{player.current_bid}}</h3>
+
+<form method="POST">
+
+<label>Team Name</label>
+<br><br>
+
+<input type="text" name="team" required>
+
+<br><br>
+
+<label>Bid Amount</label>
+<br><br>
+
+<input type="number" name="bid" required>
+
+<br><br>
+
+<button type="submit">Submit Bid</button>
+
+</form>
+
+</body>
+</html>

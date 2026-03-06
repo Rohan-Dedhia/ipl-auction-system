@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>IPL Auction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>IPL Auction System</h1>
+
+<table>
+
+<tr>
+<th>Player</th>
+<th>Base Price</th>
+<th>Current Bid</th>
+<th>Team</th>
+<th>Bid</th>
+</tr>
+
+{% for player in players %}
+
+<tr>
+<td>{{player.name}}</td>
+<td>{{player.base_price}}</td>
+<td>{{player.current_bid}}</td>
+<td>{{player.team}}</td>
+
+<td>
+<a href="/bid/{{player.id}}">
+<button>Place Bid</button>
+</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

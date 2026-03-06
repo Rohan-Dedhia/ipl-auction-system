@@ -1,0 +1,42 @@
+body{
+    font-family: Arial;
+    background-color:#f4f4f4;
+    text-align:center;
+}
+
+h1{
+    margin-top:30px;
+}
+
+table{
+    margin:auto;
+    border-collapse: collapse;
+    width:70%;
+    background:white;
+}
+
+th,td{
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+th{
+    background:#333;
+    color:white;
+}
+
+button{
+    padding:8px 15px;
+    background:#007bff;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+form{
+    margin-top:40px;
+}
